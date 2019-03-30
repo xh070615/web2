@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width:600px;
+				height:auto ;
+				margin: 100px auto;
+				border: 1px solid gray;
+			}
+			.box textarea{
+				width: 580px;
+				height: 78px;
+				border: 1px solid grey;
+				resize: none;
+				margin-left: 10px;
+				margin-top: 10px;
+			}
+			.box button{
+				border: none;
+				width: 82px;
+				height: 30px;
+				border-radius: 2px;
+				background: #ffc09f;
+				color: white;
+				font-weight: 700;
+				margin-left: 510px;
+			}
+			.box ul{
+				list-style: none;
+			}
+			.box ul li{
+				width: 580px;
+				border-bottom: 1px dashed grey;
+				line-height: 30px;
+				margin-right: 20px;
+			}
+			.box ul li a{
+				float: right;
+				text-decoration: none;
+			}
+		</style>
+		<script>
+			window.onload=function() {
+				function $(id) {
+					return document.getElementById(id);
+				}
+				var btn=$("release");
+				var textAarea=$("content");
+				var box=$("box");
+				var ul=document.createElement("ul");
+				box.appendChild(ul);
+				btn.onclick=function() {
+					var content=textAarea.value;
+					textAarea.value="";
+					if (content=="") {
+						alert("内容不能为空");
+						retrun ;
+					}
+					var li=document.createElement("li");
+					li.innerHTML=content+"<a href=javascript:;>删除</a>"
+					var childerenLi=ul.children;
+					if (childerenLi.length<0) {
+						ul.appendChild(li);
+					} else{
+						ul.insertBefore(li,ul.firstChild);
+					}
+					var as=document.getElementsByTagName("a");
+					for (var i=0;i<as.length;i++) {
+						as[i].onclick=function(){
+							ul.removeChild(this.parentNode);
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body class="box" id="box">
+		<textarea id="content"></textarea>
+		<button id="release">发布</button>
+		<!--<ul>
+			<li>dddd<a href="javascript:;">删除</a></li>
+			<li>dddd<a href="javascript:;">删除</a></li>
+			<li>dddd<a href="javascript:;">删除</a></li>
+			<li>dddd<a href="javascript:;">删除</a></li>
+			<li>dddd<a href="javascript:;">删除</a></li>
+		</ul>-->
+	</body>
+</html>
